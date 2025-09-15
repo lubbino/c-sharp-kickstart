@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Restore dependencies (Console App Template)
+      run: dotnet restore templates/console-app/ConsoleApp.csproj
+    
+    - name: Build Console App Template
+      run: dotnet build templates/console-app/ConsoleApp.csproj --no-restore --configuration Release --warnaserror
+    
+    - name: Restore dependencies (xUnit Template)
+      run: dotnet restore templates/xunit-project/XUnitProject.csproj
+    
+    - name: Build xUnit Template
+      run: dotnet build templates/xunit-project/XUnitProject.csproj --no-restore --configuration Release --warnaserror
+    
+    - name: Test xUnit Template
+      run: dotnet test templates/xunit-project/XUnitProject.csproj --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          **/TestResults/**/*
+          **/coverage.cobertura.xml
+        retention-days: 30
+
+  validate-exercises:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Find and test exercise projects
+      run: |
+        # Find all exercise .csproj files
+        find exercises/ -name "*.csproj" -type f | while read proj; do
+          echo "Testing project: $proj"
+          dotnet restore "$proj"
+          dotnet build "$proj" --no-restore --configuration Release --warnaserror
+        done
+    
+    - name: Find and test test projects
+      run: |
+        # Find all test .csproj files
+        find tests/ -name "*.csproj" -type f | while read proj; do
+          echo "Testing project: $proj"
+          dotnet restore "$proj"
+          dotnet build "$proj" --no-restore --configuration Release --warnaserror
+          dotnet test "$proj" --no-build --configuration Release --verbosity normal
+        done
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Install dotnet format
+      run: dotnet tool install -g dotnet-format
+    
+    - name: Check code formatting (Console App)
+      run: dotnet format templates/console-app/ConsoleApp.csproj --verify-no-changes --verbosity diagnostic
+    
+    - name: Check code formatting (xUnit Project)
+      run: dotnet format templates/xunit-project/XUnitProject.csproj --verify-no-changes --verbosity diagnostic

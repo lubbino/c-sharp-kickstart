@@ -1,0 +1,115 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with the course content or code
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the information below to help us understand and fix the issue.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which area of the course is affected?
+      options:
+        - Chapter content
+        - Exercise code
+        - Test cases
+        - Templates
+        - Documentation
+        - CI/CD
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: chapter
+    attributes:
+      label: Chapter/Exercise
+      description: If applicable, which chapter or exercise is affected? (e.g., "Chapter 03", "Exercise 05-02")
+      placeholder: "Chapter 03, Exercise 2"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: "When I run the exercise, I expect X but get Y instead..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Run command '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide your environment details
+      placeholder: |
+        - OS: [e.g., Windows 11, macOS 13, Ubuntu 22.04]
+        - .NET Version: [run `dotnet --version`]
+        - VS Code Version: [e.g., 1.85.0]
+        - C# Extension Version: [e.g., 2.0.0]
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Sample
+      description: If applicable, add code that demonstrates the issue
+      render: csharp
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Messages/Logs
+      description: If applicable, add any error messages or logs
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to make sure this is not a duplicate
+          required: true
+        - label: I have provided all the requested information
+          required: true
+        - label: I have tested this with the latest version of the course materials
+          required: true
