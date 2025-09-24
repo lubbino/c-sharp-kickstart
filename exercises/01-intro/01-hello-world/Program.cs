@@ -5,7 +5,7 @@ using System;
 
 Console.WriteLine("Hello my name is Ludvig!");
 Console.WriteLine("I am 18 years old.");
-Console.WriteLine("I hope to learn more about programming in this course.");
+Console.WriteLine("I want to further my understnding of the programming language C#.");
 
 // TODO: Replace the line above with three lines that display:
 // 1. A greeting with your name

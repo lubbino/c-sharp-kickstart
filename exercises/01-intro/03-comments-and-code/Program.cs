@@ -3,12 +3,11 @@
 
 using System;
 
+// This line says that this is my first C# program even though that is a lie.
 Console.WriteLine("Welcome to my first C# program!");
 
-// TODO: Add a comment above this line explaining what it does
-Console.WriteLine("This line shows how comments work.");
-
-// TODO: Add a comment above this line explaining what it does
+//This line tells the human that comments can help explain what the code means.
 Console.WriteLine("Comments help explain code to humans.");
 
-// TODO: Try adding a comment in the middle of this line - what happens?
+// This line explains for the human the importance of commenting your code
+Console.WriteLine("Comments can help you remember what code you wrote 2 months ago does.");

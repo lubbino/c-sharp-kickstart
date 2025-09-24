@@ -3,8 +3,8 @@
 
 using System;
 
-Console.WriteLine("This is the first line of my story.");
-
-// TODO: Add at least 4 more Console.WriteLine statements to complete your story
-// Remember: each statement should end with a semicolon
-// The computer will execute them in order from top to bottom
+Console.WriteLine("Today I woke up late.");
+Console.WriteLine("I took a quick shower before heading to the bus");
+Console.WriteLine("I put on some Kanye West in my earbuds.");
+Console.WriteLine("I went to COOP and bought a Nocco");
+Console.WriteLine("I am the only person on this lesson");
