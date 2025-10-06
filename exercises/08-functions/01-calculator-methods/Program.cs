@@ -24,8 +24,9 @@ public static class Utilities
     public static double Divide(double a, double b)
     {
         if (b != 0)
+        {
             return a / b;
-        else
+        } else
         {
             Console.WriteLine("Error: Cannot divide by zero!");
             return 0;
