@@ -2,9 +2,9 @@ using System;
 
 namespace SimpleBankingSystem
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("=== Simple Banking System ===");
             
@@ -27,7 +27,8 @@ namespace SimpleBankingSystem
                 Console.WriteLine();
 
                 Console.Write("Choose an option (1-5): ");
-                string choice = Console.ReadLine();
+
+                string choice = Console.ReadLine() ?? "";
 
                 switch (choice)
                 {
