@@ -10,12 +10,11 @@ namespace SimpleBankingSystem
             
             decimal balance = 1000.00m; // Starting balance
             bool continueRunning = true;
+            //Displays current balance at startup
+            Console.WriteLine($"Current Balance: {balance:C}");
 
             while (continueRunning)
             {
-                // Display current balance
-                Console.WriteLine($"Current Balance: {balance:C}");
-                Console.WriteLine();
 
                 // Display menu
                 Console.WriteLine("Menu:");
@@ -34,13 +33,17 @@ namespace SimpleBankingSystem
                 {
                     case "1":
                         // TODO: Implement check balance
+                        Console.WriteLine();
+                        Console.WriteLine($"Current balance: {balance:C}");
                         break;
-
                     case "2":
                         // TODO: Implement deposit
                         // - Ask for amount
                         // - Validate amount is positive
                         // - Add to balance
+                        Console.WriteLine();
+                        Console.Write("Enter deposit amount: ");
+                        var input = Console.ReadLine();
                         break;
 
                     case "3":
