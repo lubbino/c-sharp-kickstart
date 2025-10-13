@@ -22,11 +22,16 @@ while (playAgain)
     int secretNumber = random.Next(1, 101);
     int attempts = 0;
     bool gameWon = false;
-    
+    string guess;
+    int guessInterger;
+    int score;
+    string newGame;
+
+    Console.WriteLine();
     Console.WriteLine($"🎯 Number Guessing Game - Round {gamesPlayed}");
     Console.WriteLine("I'm thinking of a number between 1 and 100...");
-    Console.WriteLine("");
-    
+    Console.WriteLine("Can you guess what it is?");
+
     // TODO: Guessing loop
     while (!gameWon)
     {
@@ -34,11 +39,48 @@ while (playAgain)
         // TODO: Provide feedback (too high, too low, correct)
         // TODO: Count attempts
         // TODO: Check if game is won
+        attempts++;
+        Console.WriteLine();
+        Console.Write($"Attempt {attempts}: Enter your guess: ");
+        guess = Console.ReadLine() ?? "";
+        if (int.TryParse(guess, out guessInterger))
+        {
+            if (guessInterger < secretNumber)
+            {
+                Console.WriteLine("Too low! Try a higher number.");
+            }
+            else if (guessInterger > secretNumber)
+            {
+                Console.WriteLine("Too high! Try a lower number.");
+            }
+            else
+            {
+                Console.WriteLine($"Congratulations! You guessed it in {attempts} attempts!");
+                gameWon = true;
+            }
+        }
+        else
+        {
+            Console.WriteLine();
+            Console.WriteLine("Guess is not valid try again.");
+            attempts--;
+        }
+        ;
     }
-    
+
     // TODO: Calculate and display score
     // TODO: Update statistics
     // TODO: Ask if player wants to play again
+    score = 100 - attempts;
+    totalAttempts += attempts;
+    if (score > bestScore) bestScore = score;
+    Console.WriteLine();
+    Console.WriteLine($"Your Score: {score} points (100 - {attempts} attempts!)");
+    Console.WriteLine();
+    Console.Write("Would you like to play again? (yes/no): ");
+    newGame = Console.ReadLine() ?? "".ToLower();
+    if (newGame == "n" || newGame == "no") playAgain = false;
+    
 }
 
 // TODO: Display final statistics
