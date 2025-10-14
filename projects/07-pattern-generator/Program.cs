@@ -28,7 +28,7 @@ namespace PatternGenerator
                 Console.WriteLine();
 
                 Console.Write("Choose a pattern (1-8): ");
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine() ?? "";
                 switch (choice)
                 {
                     case "1":
@@ -37,7 +37,7 @@ namespace PatternGenerator
                         // Use nested loops to generate pattern
                         Console.WriteLine("Number Triangle (ascending)");
                         Console.Write("Enter number of rows: ");
-                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        if (int.TryParse(Console.ReadLine() ?? "", out rows) && rows > 0 && rows <= 50)
                         {
                             for (int i = 1; i <= rows; i++)
                             {
@@ -58,7 +58,7 @@ namespace PatternGenerator
                         // TODO: Implement Number Triangle (descending)
                         Console.WriteLine("Number Triangle (descending)");
                         Console.Write("Enter number of rows: ");
-                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        if (int.TryParse(Console.ReadLine() ?? "", out rows) && rows > 0 && rows <= 50)
                         {
                             for (int i = rows; i >= 1; i--)
                             {
@@ -79,7 +79,7 @@ namespace PatternGenerator
                         // TODO: Implement Star Pyramid
                         Console.WriteLine("Star Pyramid - Not implemented yet");
                         Console.Write("Enter number of rows: ");
-                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        if (int.TryParse(Console.ReadLine() ?? "", out rows) && rows > 0 && rows <= 50)
                         {
                             for (int i = 1; i <= rows; i++)
                             {
