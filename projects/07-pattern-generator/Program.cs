@@ -1,14 +1,16 @@
 using System;
+using System.Threading;
 
 namespace PatternGenerator
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("=== Pattern Generator ===");
             Console.WriteLine();
 
+            int rows = 0;
             bool continueRunning = true;
 
             while (continueRunning)
@@ -27,24 +29,75 @@ namespace PatternGenerator
 
                 Console.Write("Choose a pattern (1-8): ");
                 string choice = Console.ReadLine();
-
                 switch (choice)
                 {
                     case "1":
                         // TODO: Implement Number Triangle (ascending)
                         // Ask for number of rows
                         // Use nested loops to generate pattern
-                        Console.WriteLine("Number Triangle (ascending) - Not implemented yet");
+                        Console.WriteLine("Number Triangle (ascending)");
+                        Console.Write("Enter number of rows: ");
+                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        {
+                            for (int i = 1; i <= rows; i++)
+                            {
+                                for (int x = 1; x <= i; x++)
+                                {
+                                    Write(x + " ");
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a positive integer that's at most 50.");
+                        }
                         break;
 
                     case "2":
                         // TODO: Implement Number Triangle (descending)
-                        Console.WriteLine("Number Triangle (descending) - Not implemented yet");
+                        Console.WriteLine("Number Triangle (descending)");
+                        Console.Write("Enter number of rows: ");
+                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        {
+                            for (int i = rows; i >= 1; i--)
+                            {
+                                for (int x = 1; x <= i; x++)
+                                {
+                                    Write(x + " ");
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a positive integer.");
+                        }
                         break;
 
                     case "3":
                         // TODO: Implement Star Pyramid
                         Console.WriteLine("Star Pyramid - Not implemented yet");
+                        Console.Write("Enter number of rows: ");
+                        if (int.TryParse(Console.ReadLine(), out rows) && rows > 0 && rows <= 50)
+                        {
+                            for (int i = 1; i <= rows; i++)
+                            {
+                                for (int j = 1; j <= rows - i; j++)
+                                {
+                                    Write(" ");
+                                }
+                                for (int k = 1; k <= (2 * i - 1); k++)
+                                {
+                                    Write("*");
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a positive integer that's at most 50.");
+                        }
                         break;
 
                     case "4":
@@ -79,6 +132,14 @@ namespace PatternGenerator
 
                 Console.WriteLine();
             }
+        }
+        public static void Write(string input)
+        {
+            for (int x = 0; x < input.Length; x++)
+            {
+                Console.Write(input[x]); 
+                Thread.Sleep(35); // Pauses execution for 30 milliseconds
+            };
         }
     }
 }
