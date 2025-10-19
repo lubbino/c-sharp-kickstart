@@ -252,16 +252,24 @@ namespace PatternGenerator
             for (int x = 0; x < input.Length; x++)
             {
                 Console.Write(input[x]);
-                if (char.ToString(input[x]) != " ") Thread.Sleep(25); // Pauses execution for 25 milliseconds
-            };
+                if (char.ToString(input[x]) != " ")
+                {
+                    Thread.Sleep(25); // Pauses execution for 25 milliseconds
+                }
+            }
+            ;
         }
         public static void WriteLine(string input)
         {
             for (int x = 0; x < input.Length; x++)
             {
                 Console.Write(input[x]);
-                if (char.ToString(input[x]) != " ") Thread.Sleep(25); // Pauses execution for 25 milliseconds
-            };
+                if (char.ToString(input[x]) != " ")
+                {
+                    Thread.Sleep(25); // Pauses execution for 25 milliseconds
+                }
+            }
+            ;
             Console.WriteLine();
         }
     }

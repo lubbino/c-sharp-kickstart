@@ -1,10 +1,10 @@
 using System;
 
-namespace MathLibrary
+public namespace MathLibrary
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("=== Math Library ===");
             Console.WriteLine();
@@ -68,39 +68,40 @@ namespace MathLibrary
         }
 
         // TODO: Implement basic operations functions
-        static void HandleBasicOperations()
+        public static void HandleBasicOperations()
         {
             Console.WriteLine("Basic Operations - Not implemented yet");
             // TODO: Show submenu for add, subtract, multiply, divide
             // TODO: Call appropriate functions
+
         }
 
         // TODO: Implement power and root functions
-        static void HandlePowerAndRoot()
+        public static void HandlePowerAndRoot()
         {
             Console.WriteLine("Power and Root Operations - Not implemented yet");
         }
 
         // TODO: Implement geometry functions
-        static void HandleGeometry()
+        public static void HandleGeometry()
         {
             Console.WriteLine("Geometry Calculations - Not implemented yet");
         }
 
         // TODO: Implement number analysis functions
-        static void HandleNumberAnalysis()
+        public static void HandleNumberAnalysis()
         {
             Console.WriteLine("Number Analysis - Not implemented yet");
         }
 
         // TODO: Implement statistics functions
-        static void HandleStatistics()
+        public static void HandleStatistics()
         {
             Console.WriteLine("Statistics - Not implemented yet");
         }
 
         // TODO: Implement number conversion functions
-        static void HandleNumberConversions()
+        public static void HandleNumberConversions()
         {
             Console.WriteLine("Number Conversions - Not implemented yet");
         }
@@ -110,5 +111,6 @@ namespace MathLibrary
         // static double Add(double a, double b) { return a + b; }
         // static double CircleArea(double radius) { return Math.PI * radius * radius; }
         // static bool IsPrime(int number) { /* implementation */ }
+        
     }
 }
