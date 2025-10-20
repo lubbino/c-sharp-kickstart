@@ -1,6 +1,6 @@
 using System;
 
-public namespace MathLibrary
+namespace MathLibrary
 {
     public class Program
     {
@@ -25,7 +25,7 @@ public namespace MathLibrary
                 Console.WriteLine();
 
                 Console.Write("Choose an operation (1-7): ");
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine() ?? "";
 
                 switch (choice)
                 {
@@ -71,40 +71,343 @@ public namespace MathLibrary
         // TODO: Implement basic operations functions
         public static void HandleBasicOperations()
         {
-            Console.WriteLine("Basic Operations - Not implemented yet");
-            // TODO: Show submenu for add, subtract, multiply, divide
-            // TODO: Call appropriate functions
+            Console.WriteLine("Basic Operations");
+            Console.WriteLine();
+            Console.WriteLine("a) Add two numbers");
+            Console.WriteLine("b) Add multiple numbers");
+            Console.WriteLine("c) Subtract two numbers");
+            Console.WriteLine("d) Multiply two numbers");
+            Console.WriteLine("e) Divide two numbers");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-e): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter first number: ");
+                    double addNum1 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter second number: ");
+                    double addNum2 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Result: {Add(addNum1, addNum2)}");
+                    break;
+                case "b":
+                    Console.Write("Enter numbers separated by commas: ");
+                    string input = Console.ReadLine() ?? "";
+                    string[] parts = input.Split(',');
+                    double[] numbers = Array.ConvertAll(parts, Double.Parse);
+                    Console.WriteLine($"Result: {Add(numbers)}");
+                    break;
+                case "c":
+                    Console.Write("Enter first number: ");
+                    double subNum1 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter second number: ");
+                    double subNum2 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Result: {Subtract(subNum1, subNum2)}");
+                    break;
+                case "d":
+                    Console.Write("Enter first number: ");
+                    double mulNum1 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter second number: ");
+                    double mulNum2 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Result: {Multiply(mulNum1, mulNum2)}");
+                    break;
+                case "e":
+                    Console.Write("Enter first number: ");
+                    double divNum1 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter second number: ");
+                    double divNum2 = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {Divide(divNum1, divNum2)}");
+                    }
+                    catch (DivideByZeroException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-e.");
+                    break;
+            }
 
         }
 
         // TODO: Implement power and root functions
         public static void HandlePowerAndRoot()
         {
-            Console.WriteLine("Power and Root Operations - Not implemented yet");
+            Console.WriteLine("Power and Root Operations");
+            Console.WriteLine();
+            Console.WriteLine("a) Power");
+            Console.WriteLine("b) Square Root");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-b): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter base number: ");
+                    double baseNum = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter exponent number: ");
+                    double expNum = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Result: {Power(baseNum, expNum)}");
+                    break;
+                case "b":
+                    Console.Write("Enter number: ");
+                    double rootNum = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {SquareRoot(rootNum)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-b.");
+                    break;
+            }
         }
 
         // TODO: Implement geometry functions
         public static void HandleGeometry()
         {
-            Console.WriteLine("Geometry Calculations - Not implemented yet");
+            Console.WriteLine("Geometry Calculations");
+            Console.WriteLine();
+            Console.WriteLine("a) Circle Area");
+            Console.WriteLine("b) Circle Circumference");
+            Console.WriteLine("c) Rectangle Area");
+            Console.WriteLine("d) Rectangle Perimeter");
+            Console.WriteLine("e) Triangle Area");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-e): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter radius: ");
+                    double radiusArea = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {CircleArea(radiusArea)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "b":
+                    Console.Write("Enter radius: ");
+                    double radiusCircum = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {CircleCircumference(radiusCircum)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "c":
+                    Console.Write("Enter length: ");
+                    double lengthArea = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter width: ");
+                    double widthArea = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {RectangleArea(lengthArea, widthArea)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "d":
+                    Console.Write("Enter length: ");
+                    double lengthPerim = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter width: ");
+                    double widthPerim = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {RectanglePerimeter(lengthPerim, widthPerim)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "e":
+                    Console.Write("Enter base length: ");
+                    double baseLength = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.Write("Enter height: ");
+                    double height = Convert.ToDouble(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Result: {TriangleArea(baseLength, height)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-e.");
+                    break;
+            }
         }
 
         // TODO: Implement number analysis functions
         public static void HandleNumberAnalysis()
         {
-            Console.WriteLine("Number Analysis - Not implemented yet");
+            Console.WriteLine("Number Analysis");
+            Console.WriteLine();
+            Console.WriteLine("a) Check Prime");
+            Console.WriteLine("b) Check Perfect Square");
+            Console.WriteLine("c) Factorial");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-c): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter number: ");
+                    int primeNum = Convert.ToInt32(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Is Prime: {IsPrime(primeNum)}");
+                    break;
+                case "b":
+                    Console.Write("Enter number: ");
+                    int squareNum = Convert.ToInt32(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Is Perfect Square: {IsPerfectSquare(squareNum)}");
+                    break;
+                case "c":
+                    Console.Write("Enter number: ");
+                    int factNum = Convert.ToInt32(Console.ReadLine() ?? "");
+                    try
+                    {
+                        Console.WriteLine($"Factorial: {Factorial(factNum)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-c.");
+                    break;
+            }
         }
 
         // TODO: Implement statistics functions
         public static void HandleStatistics()
         {
-            Console.WriteLine("Statistics - Not implemented yet");
+            Console.WriteLine("Statistics");
+            Console.WriteLine();
+            Console.WriteLine("a) Mean");
+            Console.WriteLine("b) Max");
+            Console.WriteLine("c) Min");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-c): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter numbers separated by commas: ");
+                    string inputMean = Console.ReadLine() ?? "";
+                    string[] partsMean = inputMean.Split(',');
+                    double[] numbersMean = Array.ConvertAll(partsMean, Double.Parse);
+                    try
+                    {
+                        Console.WriteLine($"Mean: {Mean(numbersMean)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "b":
+                    Console.Write("Enter numbers separated by commas: ");
+                    string inputMax = Console.ReadLine() ?? "";
+                    string[] partsMax = inputMax.Split(',');
+                    double[] numbersMax = Array.ConvertAll(partsMax, Double.Parse);
+                    try
+                    {
+                        Console.WriteLine($"Max: {Max(numbersMax)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                case "c":
+                    Console.Write("Enter numbers separated by commas: ");
+                    string inputMin = Console.ReadLine() ?? "";
+                    string[] partsMin = inputMin.Split(',');
+                    double[] numbersMin = Array.ConvertAll(partsMin, Double.Parse);
+                    try
+                    {
+                        Console.WriteLine($"Min: {Min(numbersMin)}");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-c.");
+                    break;
+            }
         }
 
         // TODO: Implement number conversion functions
         public static void HandleNumberConversions()
         {
-            Console.WriteLine("Number Conversions - Not implemented yet");
+            Console.WriteLine("Number Conversions");
+            Console.WriteLine();
+            Console.WriteLine("a) Celsius to Fahrenheit");
+            Console.WriteLine("b) Fahrenheit to Celsius");
+            Console.WriteLine("c) Decimal to Binary");
+            Console.WriteLine("d) Binary to Decimal");
+            Console.WriteLine("e) Decimal to Hexadecimal");
+            Console.WriteLine("f) Hexadecimal to Decimal");
+            Console.WriteLine();
+            Console.Write("Choose an operation (a-f): ");
+            string choice = Console.ReadLine() ?? "";
+            switch (choice)
+            {
+                case "a":
+                    Console.Write("Enter Celsius temperature: ");
+                    double celsius = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Fahrenheit: {CtoF(celsius)}");
+                    break;
+                case "b":
+                    Console.Write("Enter Fahrenheit temperature: ");
+                    double fahrenheit = Convert.ToDouble(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Celsius: {FtoC(fahrenheit)}");
+                    break;
+                case "c":
+                    Console.Write("Enter decimal number: ");
+                    int decimalNum = Convert.ToInt32(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Binary: {DecimalToBinary(decimalNum)}");
+                    break;
+                case "d":
+                    Console.Write("Enter binary string: ");
+                    string binaryStr = Console.ReadLine() ?? "";
+                    Console.WriteLine($"Decimal: {BinaryToDecimal(binaryStr)}");
+                    break;
+                case "e":
+                    Console.Write("Enter decimal number: ");
+                    int decimalNumHex = Convert.ToInt32(Console.ReadLine() ?? "");
+                    Console.WriteLine($"Hexadecimal: {DecimalToHexadecimal(decimalNumHex)}");
+                    break;
+                case "f":
+                    Console.Write("Enter hexadecimal string: ");
+                    string hexStr = Console.ReadLine() ?? "";
+                    Console.WriteLine($"Decimal: {HexadecimalToDecimal(hexStr)}");
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please choose a-f.");
+                    break;
+            }
         }
 
         // TODO: Add mathematical functions here
@@ -126,11 +429,7 @@ public namespace MathLibrary
 
         public static double Subtract(double a, double b) { return a - b; }
         public static double Multiply(double a, double b) { return a * b; }
-        public static double Divide(double a, double b) 
-        {
-            if ( b == 0) { throw new DivideByZeroException("Cannot divide by zero."); }
-            return a / b;
-        }
+        public static double Divide(double a, double b) { return a / b; }
 
         public static double Power(double baseNumber, double exponentNumber)
         {
@@ -156,6 +455,11 @@ public namespace MathLibrary
         {
             if (length < 0 || width < 0) { throw new ArgumentException("Length and width cannot be negative."); }
             return length * width;
+        }
+        public static double RectanglePerimeter(double length, double width)
+        {
+            if (length < 0 || width < 0) { throw new ArgumentException("Length and width cannot be negative."); }
+            return 2 * (length + width);
         }
         public static double TriangleArea(double baseLength, double height)
         {
@@ -197,6 +501,52 @@ public namespace MathLibrary
         {
             return (fahrenheit - 32) * 5 / 9;
         }
+        public static string DecimalToBinary(int decimalNumber)
+        {
+            return Convert.ToString(decimalNumber, 2);
+        }
+        public static int BinaryToDecimal(string binaryString)
+        {
+            return Convert.ToInt32(binaryString, 2);
+        }
+        public static string DecimalToHexadecimal(int decimalNumber)
+        {
+            return Convert.ToString(decimalNumber, 16).ToUpper();
+        }
+        public static int HexadecimalToDecimal(string hexString)
+        {
+            return Convert.ToInt32(hexString, 16);
+        }
 
+        public static double Mean(double[] numbers)
+        {
+            if (numbers.Length == 0) { throw new ArgumentException("Array cannot be empty."); }
+            double sum = 0;
+            foreach (double num in numbers)
+            {
+                sum += num;
+            }
+            return sum / numbers.Length;
+        }
+        public static double Max(double[] numbers)
+        {
+            if (numbers.Length == 0) { throw new ArgumentException("Array cannot be empty."); }
+            double max = numbers[0];
+            foreach (double num in numbers)
+            {
+                if (num > max) { max = num; }
+            }
+            return max;
+        }
+        public static double Min(double[] numbers)
+        {
+            if (numbers.Length == 0) { throw new ArgumentException("Array cannot be empty."); }
+            double min = numbers[0];
+            foreach (double num in numbers)
+            {
+                if (num < min) { min = num; }
+            }
+            return min;
+        }
     }
 }
