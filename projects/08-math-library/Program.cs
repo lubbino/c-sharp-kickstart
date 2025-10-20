@@ -30,6 +30,7 @@ namespace MathLibrary
                 switch (choice)
                 {
                     case "1":
+                        Console.WriteLine($"result: {Power(4,5)}");
                         HandleBasicOperations();
                         break;
 
@@ -110,5 +111,90 @@ namespace MathLibrary
         // static double Add(double a, double b) { return a + b; }
         // static double CircleArea(double radius) { return Math.PI * radius * radius; }
         // static bool IsPrime(int number) { /* implementation */ }
+        public static double Add(double a, double b) { return a + b; }
+        public static double Add(double[] numbers) 
+        { 
+            double sum = 0;
+            foreach (double num in numbers)
+            {
+                sum += num;
+            }
+            return sum;
+        }
+
+        public static double Subtract(double a, double b) { return a - b; }
+        public static double Multiply(double a, double b) { return a * b; }
+        public static double Divide(double a, double b) 
+        {
+            if ( b == 0) { throw new DivideByZeroException("Cannot divide by zero."); }
+            return a / b;
+        }
+
+        public static double Power(double baseNumber, double exponentNumber)
+        {
+            return Math.Pow(baseNumber, exponentNumber);
+        }
+        public static double SquareRoot(double number)
+        {
+            if (number < 0) { throw new ArgumentException("Cannot compute square root of a negative number."); }
+            return Math.Sqrt(number);
+        }
+
+        public static double CircleArea(double radius)
+        {
+            if (radius < 0) { throw new ArgumentException("Radius cannot be negative."); }
+            return Math.PI * radius * radius;
+        }
+        public static double CircleCircumference(double radius)
+        {
+            if (radius < 0) { throw new ArgumentException("Radius cannot be negative."); }
+            return 2 * Math.PI * radius;
+        }
+        public static double RectangleArea(double length, double width)
+        {
+            if (length < 0 || width < 0) { throw new ArgumentException("Length and width cannot be negative."); }
+            return length * width;
+        }
+        public static double TriangleArea(double baseLength, double height)
+        {
+            if (baseLength < 0 || height < 0) { throw new ArgumentException("Base length and height cannot be negative."); }
+            return 0.5 * baseLength * height;
+        }
+
+        public static bool IsPrime(int number)
+        {
+            if (number <= 1) return false;
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+            {
+                if (number % i == 0) return false;
+            }
+            return true;
+        }
+        public static bool IsPerfectSquare(int number)
+        {
+            if (number < 0) return false;
+            int root = (int)Math.Sqrt(number);
+            return root * root == number;
+        }
+        public static long Factorial(int number)
+        {
+            if (number < 0) { throw new ArgumentException("Number cannot be negative."); }
+            long result = 1;
+            for (int i = 2; i <= number; i++)
+            {
+                result *= i;
+            }
+            return result;
+        }
+
+        public static double CtoF(double celsius)
+        {
+            return (celsius * 9 / 5) + 32;
+        }
+        public static double FtoC(double fahrenheit)
+        {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+
     }
 }
